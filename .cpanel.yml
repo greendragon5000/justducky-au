@@ -1,0 +1,19 @@
+# cPanel Git Version Control deployment config (same VentraIP/LiteSpeed
+# hosting as greendragon5000/charlies-garden). cPanel runs this
+# automatically after "Deploy HEAD Commit" in its Git Version Control UI -
+# nothing in this repo or any agent runs it directly.
+#
+# DEPLOYPATH is /home/$USER/public_html - the live document root for
+# justducky.au. Correct it here if the real account username differs.
+#
+# public_html is SHARED with the old site's /Plants/ directory and the
+# `garden` symlink (see README.md), so this only ever copies the exact
+# files this repo owns, by name:
+#   - never `cp -Rf .` - that would also copy README.md, .gitignore, and
+#     this repo's own .git into the live site
+#   - never `rm -rf` anything under DEPLOYPATH - that would take out
+#     /Plants/ and the garden symlink (see CHA-17 in the garden repo)
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html
+    - /bin/cp -f index.html style.css .htaccess "$DEPLOYPATH"

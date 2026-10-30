@@ -1,0 +1,15 @@
+# Force HTTPS and one canonical host (justducky.au, not www). Deliberately
+# NOT a catch-all rewrite to a front controller - this repo is static
+# files, and a catch-all would swallow requests meant for /garden/ (the
+# symlink to the garden app) and /Plants/ (the old site's QR-tag pages).
+# See README.md for the full explanation.
+RewriteEngine On
+
+# Leave ACME HTTP validation alone, in case AutoSSL ever renews this
+# domain's certificate over a plain http:// request rather than DNS - if
+# that request got redirected to https first, renewal could fail silently.
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^justducky\.au$ [NC]
+RewriteRule ^(.*)$ https://justducky.au/$1 [R=301,L]
