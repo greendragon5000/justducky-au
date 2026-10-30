@@ -77,6 +77,12 @@ adding `/cooking/` later a ten-minute job (a static directory) rather than
 a rethink, and what stops a future app from accidentally exposing its
 `config.php` the way option 1 above cannot.
 
+The old `FoodGardenPlantingCalendar/` page (unfinished, never wired up to
+a data source) is being retired along with the rest of the old site - see
+[CHA-62](/CHA/issues/CHA-62) for the archive. If a planting calendar comes
+back later, it comes back as a proper `/calendar/` hobby area under this
+convention, not as a restored copy of that stub.
+
 ## Deploying (not done yet - the owner runs this)
 
 This task is code-only. No deploy has happened. The cPanel work that
