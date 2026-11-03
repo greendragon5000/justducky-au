@@ -6,13 +6,14 @@
 # DEPLOYPATH is /home/$USER/public_html - the live document root for
 # justducky.au. Correct it here if the real account username differs.
 #
-# public_html is SHARED with the old site's /Plants/ directory and the
-# `garden` symlink (see README.md), so this only ever copies the exact
-# files this repo owns, by name:
+# public_html is SHARED with the `Plants` symlink to the garden app and the
+# /garden/ redirect directory (see README.md), so this only ever copies the
+# exact files this repo owns, by name:
 #   - never `cp -Rf .` - that would also copy README.md, .gitignore, and
 #     this repo's own .git into the live site
-#   - never `rm -rf` anything under DEPLOYPATH - that would take out
-#     /Plants/ and the garden symlink (see CHA-17 in the garden repo)
+#   - never `rm -rf` anything under DEPLOYPATH - that would take out the
+#     Plants symlink, and with it the whole garden app, plus the /garden/
+#     301 that printed QR tags rely on (see CHA-17 in the garden repo)
 deployment:
   tasks:
     - export DEPLOYPATH=/home/$USER/public_html
