@@ -1,7 +1,8 @@
 # Force HTTPS and one canonical host (justducky.au, not www). Deliberately
 # NOT a catch-all rewrite to a front controller - this repo is static
-# files, and a catch-all would swallow requests meant for /garden/ (the
-# symlink to the garden app) and /Plants/ (the old site's QR-tag pages).
+# files, and a catch-all would swallow requests meant for /Plants/ (the
+# symlink to the garden app) and /garden/ (the permanent 301 to /Plants/
+# that keeps already-printed QR tags working).
 # See README.md for the full explanation.
 RewriteEngine On
 
